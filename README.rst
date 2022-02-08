@@ -49,14 +49,16 @@ Loading entities by properties
 
   use Drupal\node\NodeInterface;
 
+  $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
+
   // Load all published `event` nodes.
-  \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+  $nodeStorage->loadByProperties([
     'status' => NodeInterface::PUBLISHED,
     'type' => 'event',
   ]);
 
   // Load all published `talk` nodes.
-  \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+  $nodeStorage->loadByProperties([
     'status' => NodeInterface::PUBLISHED,
     'type' => 'talk',
   ]);
@@ -68,11 +70,13 @@ Returns an instance of ``Drupal\Core\Entity\Query\QueryInterface`` for the speci
 
 .. code:: php
 
-  // Load all node IDs.
-  \Drupal::entityTypeManager()->getStorage('node')->getQuery()->execute();
+  $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
 
-  // Load node IDs that match the specified conditions.
-  \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+  // Load all nodes.
+  $nodeStorage->getQuery()->execute();
+
+  // Load nodes that match the specified conditions.
+  $nodeStorage->getQuery()
     ->condition('type', 'event')
     ->condition('title', '%Online%', 'LIKE')
     ->range(0, 10)
