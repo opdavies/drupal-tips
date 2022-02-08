@@ -61,7 +61,7 @@ Loading entities by properties
 Querying for entities
 ---------------------
 
-Returns an instance of ``\Drupal\Core\Entity\Query\QueryInterface`` for the specified entity type.
+Returns an instance of ``Drupal\Core\Entity\Query\QueryInterface`` for the specified entity type.
 
 .. code:: php
 
