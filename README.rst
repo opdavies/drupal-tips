@@ -56,6 +56,72 @@ After:
     Drupal\my_module\Service\ExampleService:
       autowire: true
 
+Controllers
+===========
+
+Controllers as services
+-----------------------
+
+.. code-block:: yaml
+
+  # my_module.services.yml
+
+  services:
+    Drupal\my_module\Controller\ExampleController: []
+
+Single-action controllers
+-------------------------
+
+Before:
+
+.. code-block:: yaml
+
+  # my_module.routing.yml
+
+  my_module.example:
+    path: '/example'
+    defaults:
+      _controller: 'Drupal\my_module\Controller\ExampleController::handle'
+    requirements:
+      _permission: 'access content'
+
+.. code-block:: php
+
+  // modules/my_module/src/Controller/ExampleController.php
+
+  class ExampleController {
+
+    public function handle() {
+      // ...
+    }
+
+  }
+
+After:
+
+.. code-block:: yaml
+
+  # my_module.routing.yml
+
+  my_module.example:
+    path: '/example'
+    defaults:
+      _controller: 'Drupal\my_module\Controller\ExampleController'
+    requirements:
+      _permission: 'access content'
+
+.. code-block:: php
+
+  // modules/my_module/src/Controller/ExampleController.php
+
+  class ExampleController {
+
+    public function __invoke() {
+      // ...
+    }
+
+  }
+
 Automated testing
 =================
 
