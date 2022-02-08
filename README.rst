@@ -44,15 +44,17 @@ Loading entities by properties
 
 .. code:: php
 
+  use Drupal\node\NodeInterface;
+
   // Load all published `event` nodes.
   \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
-    'status' => \Drupal\node\NodeInterface::PUBLISHED,
+    'status' => NodeInterface::PUBLISHED,
     'type' => 'event',
   ]);
 
   // Load all published `talk` nodes.
   \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
-    'status' => \Drupal\node\NodeInterface::PUBLISHED,
+    'status' => NodeInterface::PUBLISHED,
     'type' => 'talk',
   ]);
 
