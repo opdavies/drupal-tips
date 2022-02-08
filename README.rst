@@ -1,7 +1,10 @@
 ..
   TODO:
   - Cron jobs
+  - Custom plugins (e.g. blocks)
+  - Drush commands
   - Forms
+  - JSON:API (filtering, field names etc)
   - Logging
   - Querying the database
   - Queues and workers
