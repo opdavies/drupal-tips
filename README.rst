@@ -8,6 +8,64 @@ Inspired by https://github.com/PovilasKorop/laravel-tips.
 .. contents::
   :depth: 2
 
+Entity storage
+==============
+
+Loading a single entity by ID
+-----------------------------
+
+.. code:: php
+
+  \Drupal::entityTypeManager()->getStorage('node')->load(1);
+
+The entity type manager can also be loaded using the ``entity_type.manager`` service name. For example:
+
+.. code:: php
+
+  \Drupal::service('entity_type.manager')->getStorage('node')->load(1);
+
+Loading multiple entities by ID
+-------------------------------
+
+.. code:: php
+
+  \Drupal::entityTypeManager()->getStorage('node')->loadMultiple([1, 2]);
+
+Loading entities by properties
+------------------------------
+
+.. code:: php
+
+  // Load all published `event` nodes.
+  \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'status' => \Drupal\node\NodeInterface::PUBLISHED,
+    'type' => 'event',
+  ]);
+
+  // Load all published `talk` nodes.
+  \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'status' => \Drupal\node\NodeInterface::PUBLISHED,
+    'type' => 'talk',
+  ]);
+
+Querying for entities
+---------------------
+
+Returns an instance of ``\Drupal\Core\Entity\Query\QueryInterface`` for the specified entity type.
+
+.. code:: php
+
+  // Load all node IDs.
+  \Drupal::entityTypeManager()->getStorage('node')->getQuery()->execute();
+
+  // Load node IDs that match the specified conditions.
+  \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+    ->condition('type', 'event')
+    ->condition('title', '%Online%', 'LIKE')
+    ->range(0, 10)
+    ->addTag('node_access')
+    ->execute();
+
 Services
 ========
 
