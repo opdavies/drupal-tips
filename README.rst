@@ -1,3 +1,11 @@
+..
+  TODO:
+  - Cron jobs
+  - Forms
+  - Logging
+  - Querying the database
+  - Queues and workers
+
 Drupal tips
 ###########
 
